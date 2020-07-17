@@ -13,26 +13,42 @@ const inquirer = require('inquirer');
 
 const promptUser = () => {
     return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your name?'
-      },
-      {
-        type: 'input',
-        name: 'github',
-        message: 'Enter your GitHub Username'
-      },
-      {
-        type: 'input',
-        name: 'about',
-        message: 'Provide some information about yourself:'
-      }
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name? (Required)',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Enter your GitHub Username (Required)',
+            validate: usernameInput => {
+                if (usernameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your GitHub Username!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'about',
+            message: 'Provide some information about yourself:'
+        }
     ]);
   };
 
 const promptProject = portfolioData => {
-    // if there's no projects array property, create it
+    // if there's no projects array prop, create it
     if (!portfolioData.projects) {
         portfolioData.projects = [];
     };
@@ -46,7 +62,15 @@ const promptProject = portfolioData => {
       {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your project?'
+        message: 'What is the name of your project? (Required)',
+        validate: projectNameInput => {
+            if (projectNameInput) {
+                return true;
+            } else {
+                console.log('Please enter a project name!');
+                return false;
+            }
+        }
       },
       {
         type: 'input',
@@ -62,7 +86,15 @@ const promptProject = portfolioData => {
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)'
+        message: 'Enter the GitHub link to your project. (Required)',
+        validate: projectNameInput => {
+            if (projectNameInput) {
+                return true;
+            } else {
+                console.log('Please enter the GitHub link!');
+                return false;
+            }
+        }
       },
       {
         type: 'confirm',
