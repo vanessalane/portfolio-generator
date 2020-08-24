@@ -3,7 +3,7 @@
 ## Description
 A Node app that can be used to generate a personal portfolio site.
 
-**Info included in the portfolio**
+**Info included in the portfolio:**
 - Name
 - GitHub
 - Email
